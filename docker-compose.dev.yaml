@@ -1,0 +1,11 @@
+services:
+  postgresql:
+    image: postgres:16.4
+    environment:
+      POSTGRES_DB: cyberpoc
+      POSTGRES_USER: cyberpoc
+      POSTGRES_PASSWORD: cyberpoc
+    volumes:
+      - ./data/postgresql:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"

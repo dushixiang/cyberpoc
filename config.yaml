@@ -1,0 +1,25 @@
+database:
+  enabled: true
+  type: postgres
+  url: "postgres://cyberpoc:cyberpoc@localhost:5432/cyberpoc?sslmode=disable"
+  ShowSql: true
+log:
+  level: debug
+  filename: ./logs/app.log
+
+server:
+  addr: "0.0.0.0:8080"
+  ip_extractor: "x-forwarded-for"
+
+app:
+  gateway:
+    enabled: true
+    addr: "0.0.0.0:8081"
+    domain: vuln.typesafe.cn
+    https: true
+  email:
+    host: "smtp.exmail.qq.com"
+    port: "465"
+    username: "no-reply@typesafe.cn"
+    password: "SoAcrQKNEVGqCQjo"
+    ssl: true

@@ -1,0 +1,6 @@
+.idea
+bin
+data
+logs
+web/node_modules
+web/dist
