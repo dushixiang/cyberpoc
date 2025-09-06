@@ -1,0 +1,28 @@
+database:
+  enabled: true
+  type: postgres
+  # 数据库连接地址 postgres://{username}:{password}@localhost:5432/{database}?sslmode=disable
+  url: "postgres://cyberpoc:cyberpoc@postgresql:5432/cyberpoc?sslmode=disable"
+  ShowSql: true
+log:
+  level: debug
+  filename: ./logs/app.log
+
+server:
+  addr: "0.0.0.0:8080"
+  ip_extractor: "x-forwarded-for"
+
+app:
+  gateway:
+    # 统一网关的作用是把容器运行时暴露的端口映射到统一网关，统一网关会根据子域名转发请求到对应的服务
+    enabled: false       # 是否启用统一网关
+    addr: "0.0.0.0:8081" # 网关监听地址
+    domain: vuln.example.com # 泛域名，实际上你得配置 *.vuln.example.com 的DNS映射到当前服务器IP
+    https: true # 只是用于前端拼接入口的，默认为true，因此建议你前面再挂一个 Caddy 或者 Nginx
+  email:
+    # 用户注册、重置密码等功能
+    host: "smtp.exmail.qq.com"
+    port: "465"
+    username: "no-reply@example.com"
+    password: "********"
+    ssl: true

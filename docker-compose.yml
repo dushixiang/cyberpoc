@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  postgresql:
+    image: postgres:16.4
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-cyberpoc}
+      POSTGRES_USER: ${POSTGRES_USER:-cyberpoc}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-cyberpoc}
+    volumes:
+      - postgresql-data:/var/lib/postgresql/data
+    restart: always
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-cyberpoc} -d ${POSTGRES_DB:-cyberpoc}" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  cyberpoc:
+    image: dushixiang/cyberpoc:latest
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./config.yaml:/opt/cyberpoc/config.yaml:ro
+      - ./default:/opt/cyberpoc/default:ro
+      - cyberpoc-logs:/opt/cyberpoc/logs
+      - /var/run/docker.sock:/var/run/docker.sock
+    depends_on:
+      postgresql:
+        condition: service_healthy
+    restart: always
+    healthcheck:
+      test: [ "CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:8080/health" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  postgresql-data:
+    driver: local
+  cyberpoc-logs:
+    driver: local
+
