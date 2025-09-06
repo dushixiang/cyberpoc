@@ -2,15 +2,13 @@
 
 CyberPoC 是一个现代化的网络安全练习和竞赛平台，支持容器化部署的安全挑战，为用户提供实践网络安全技能的环境。
 
-## ✨ 特性
+## ✨ 截图
 
-- 🐳 **容器化挑战** - 基于 Docker 的安全挑战环境
-- 🎯 **实时竞赛** - 支持 CTF 风格的竞赛模式
-- 📊 **实时排行榜** - 动态排名和积分系统
-- 🔧 **镜像管理** - 完整的 Docker 镜像生命周期管理
-- 🚀 **自动化部署** - 一键部署和扩展
-- 📱 **响应式界面** - 现代化的 Web 管理界面
-- 🔐 **用户管理** - 完整的用户认证和权限系统
+![](./screenshots/img.png)
+![](./screenshots/img_1.png)
+
+[//]: # (![]&#40;./screenshots/img_2.png&#41;)
+![](./screenshots/img_3.png)
 
 ## 🚀 快速开始
 
@@ -92,6 +90,11 @@ docker compose exec cyberpoc ./cyberpoc init challenges
 ## ⚙️ 配置说明
 
 直接看 [config-example](./config-example.yaml)
+
+## 🤝 联系我们
+- 微信群：加我微信备注「cyberpoc」，拉你进群
+
+<img src="docs/wx1.png" width="300" height="auto"/>
 
 ## 🤝 贡献
 
