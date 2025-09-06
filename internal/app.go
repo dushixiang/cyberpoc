@@ -84,6 +84,7 @@ func (r *CyberApp) Configure(app *orz.App) error {
 		},
 	}))
 	e.Use(WithErrorHandler(logger))
+	e.Use(NoCacheMiddleware)
 	customValidator := nostd.CustomValidator{Validator: validator.New()}
 	if err := customValidator.TransInit(); err != nil {
 		logger.Sugar().Fatal("failed to init custom validator", zap.Error(err))
