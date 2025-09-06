@@ -4,6 +4,10 @@ on:
   push:
     tags: [ 'v*' ]
 
+permissions:
+  contents: write
+  packages: write
+
 env:
   REGISTRY: docker.io
   IMAGE_NAME: dushixiang/cyberpoc
@@ -116,3 +120,4 @@ jobs:
         files: |
           bin/cyberpoc
         generate_release_notes: true
+        token: ${{ secrets.GITHUB_TOKEN }}
