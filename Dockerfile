@@ -38,10 +38,6 @@ RUN apk --no-cache add ca-certificates tzdata
 
 WORKDIR /opt/cyberpoc
 
-# 创建非root用户
-RUN addgroup -g 1001 -S cyberpoc && \
-    adduser -S cyberpoc -u 1001
-
 # 从构建阶段复制文件
 COPY --from=backend-builder /app/cyberpoc .
 
@@ -52,11 +48,7 @@ COPY config.yaml* ./
 COPY default/ ./default/
 
 # 创建必要的目录
-RUN mkdir -p logs data && \
-    chown -R cyberpoc:cyberpoc /opt/cyberpoc
-
-# 切换到非root用户
-USER cyberpoc
+RUN mkdir -p logs data
 
 # 健康检查
 HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \

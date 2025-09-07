@@ -20,6 +20,7 @@ services:
     image: dushixiang/cyberpoc:latest
     ports:
       - "8080:8080"
+      - "8081:8081"
     volumes:
       - ./config.yaml:/opt/cyberpoc/config.yaml:ro
       - ./default:/opt/cyberpoc/default:ro
