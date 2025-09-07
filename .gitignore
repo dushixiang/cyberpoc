@@ -4,3 +4,4 @@ data
 logs
 web/node_modules
 web/dist
+config.yaml
